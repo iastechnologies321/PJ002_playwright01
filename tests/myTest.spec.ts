@@ -24,8 +24,34 @@ test.beforeEach(async({page})=>{
 })
 
 test('Test Case 1',async({page}) => {
-    await page.goto('https://automationexercise.com/');
-    await expect(page).toHaveURL('https://automationexercise.com/');
+    // await page.goto('https://automationexercise.com/');
+    // await expect(page).toHaveURL('https://automationexercise.com/');
+    // await page.locator('[href="/login"]').click();
+    // // take screenshot
+    // await page.screenshot({path:'./screenshots/image001.png'});
+    // await page.locator('[data-qa="login-email"]').screenshot({path:'./screenshots/image002.png'});
+    // await page.locator('[href="/products"]').click();
+    // await page.waitForLoadState('load');
+    // await page.screenshot({path:'./screenshots/image003.png',fullPage:true});
+
+    // dropdowns
+    // await page.goto('https://demo.automationtesting.in/Register.html'); 
+    // await page.locator('#Skills').selectOption('C++')
+    // await page.screenshot({path:'./screenshots/dropdown01.png'});
+
+
+    // radio buttons 
+    await page.goto('https://demo.automationtesting.in/Register.html'); 
+    await page.locator('[value="Male"]').click();
+    await page.screenshot({path:'./screenshots/radioButton01.png'});
+    
+
+    // checkBoxes
+    await page.goto('https://demo.automationtesting.in/Register.html'); 
+    await page.locator('#checkbox1').check();
+    await page.screenshot({path:'./screenshots/checkbox01.png'});
+    
+    
     
 });
 

@@ -5,14 +5,16 @@ export default defineConfig({
  
   fullyParallel: true,
  
-  retries: 2,
+  retries: 0,
 
   workers: undefined,
   
   reporter: 'html',
   
   use: {
-   
+   launchOptions:{
+    args:["--start-maximized"],
+   },
     headless:false,
     trace: 'on-first-retry',
   },
@@ -21,7 +23,10 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        // ...devices['Desktop Chrome'],
+      viewport:null
+      },
     },
 
   ],
