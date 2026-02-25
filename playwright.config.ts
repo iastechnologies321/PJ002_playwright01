@@ -17,7 +17,7 @@ export default defineConfig({
    },
     headless:false,
     trace: 'on-first-retry',
-    storageState: './auth/login.json'
+    // storageState: './auth/login.json'
   },
 
   

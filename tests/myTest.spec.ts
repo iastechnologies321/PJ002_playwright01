@@ -25,7 +25,8 @@ test.beforeEach(async({page})=>{
 
 test('Test Case 1',async({page}) => {
     // await page.goto('https://automationexercise.com/');
-    // await expect(page).toHaveURL('https://automationexercise.com/');
+    // await expect.soft(page).toHaveURL('https://automationexercise.com/'); // will mark the assertion as fail , but the test will not stop.
+    // await expect(page).toHaveURL('https://automationexercise.com/'); // it will fail the test, and stop the execution
     // await page.locator('[href="/login"]').click();
     
     // // take screenshot
@@ -148,19 +149,70 @@ test('Test Case 1',async({page}) => {
 
 
     // frames
-        await page.goto('https://demo.automationtesting.in/Frames.html');
-        await page.frameLocator('#singleframe').locator('input[type="text"]').first().fill('I am inside Frame');
-        await page.screenshot({path:'./screenshots/frames01.png'});
+        // await page.goto('https://demo.automationtesting.in/Frames.html');
+        // await page.frameLocator('#singleframe').locator('input[type="text"]').first().fill('I am inside Frame');
+        // await page.screenshot({path:'./screenshots/frames01.png'});
+
+
+
+    // language dropdown
+    //    await page.goto('https://demo.automationtesting.in/Register.html');
+    //    await page.waitForTimeout(2000)
+    //    await page.locator('multi-select div#msdd').waitFor({state:'visible'});
+    //    await page.locator(' multi-select div#msdd').click({force:true});
+    //    await page.getByText('Arabic').click();
+    //    await page.getByText('Dutch').click();
+    //    await page.screenshot({path:'./screenshots/languageMultiselect.png'});
+    //    await page.locator('multi-select div#msdd').selectOption(["Arabic","Dutch"])
+
+
+       // full page screenshot in register page 
+        // await page.goto('https://demo.automationtesting.in/Register.html');
+        // await page.waitForTimeout(2000)
+        // await page.screenshot({path:'./screenshots/image003.png',fullPage:true});
+
+
+    // handle windows
+        await page.goto('https://demo.automationtesting.in/Windows.html');
+        await page.locator('[href="#Tabbed"]').click();
+
+        const [newPage] = await Promise.all([
+            page.waitForEvent('popup'),
+            page.locator('#Tabbed button').click()
+        ]);
+        
+        await newPage.locator('[href="/downloads"]').click();
+        await expect(newPage).toHaveURL('https://www.selenium.dev/downloads/')
+        await newPage.screenshot({path:'./screenshots/newwindowhandel.png'});
+        await page.bringToFront();
+        await page.locator('[href="#Seperate"]').focus()
+        await page.locator('[href="#Seperate"]').click();
+        await newPage.screenshot({path:'./screenshots/newwindowhandel01.png'});
+        
+        // Cover again - in UI 
+        // keyboard   
+        // await page.goto('https://demo.automationtesting.in/Register.html');
+        // await page.getByPlaceholder('First Name').click()
+        // await page.keyboard.press('Tab');
+        // await page.waitForTimeout(2000);
+        // // await page.keyboard.press('Tab');
+        // await page.keyboard.type('lastname',{delay:200});
+        // await page.screenshot({path:'./screenshots/keyboardops.png'});
+
+        //mouse 
+        // await page.mouse
+
+        // pixel issue with screenhots.
+        // // visual testing 
+        // await page.goto('https://automationexercise.com/');
+        // await expect(page).toHaveScreenshot('tests/myTest.spec.ts-snapshots/tests-myTest-spec-ts-snapshots--screenshots-visualTest-chromium-darwin-chromium-darwin.png',{maxDiffPixelRatio:0.2});
+    
 
     });
 
+    // today - screenshot 
 
-
-
-
-
-
-
+    // tomorrow - screenshot == UI today
 
 
 
@@ -173,11 +225,9 @@ test('Test Case 1',async({page}) => {
     // https://demo.automationtesting.in/Dynamic.html
     // https://demo.automationtesting.in/Frames.html
     // https://demo.automationtesting.in/Frames.html
+    // https://automationexercise.com/test_cases
 
 
 
 
-
-
-
-
+// page0 -> page1 -> page2 -> page3
